@@ -9,6 +9,8 @@ module.exports = {
           DEFAULT: "#3772FF",
           dark: "#1E40AF",
         },
+        Main:"#ECECE5",
+        Gray:"#8899AF"
       },
     },
   },

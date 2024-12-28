@@ -1,55 +1,59 @@
 <template>
-     <div class="font-sans p-6">
-    <h1 class="text-2xl text-center font-bold mb-4">Task maneger</h1>
-    <div class="flex flex-col gap-6">
-      <TaskCard>
-        <template #title>
-          <h3 class="text-lg font-semibold">وظیفه ۱: مطالعه Vue.js</h3>
-        </template>
-        <template #actions>
-          <button
-            @click="markAsDone('مطالعه Vue.js')"
-            class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 transition"
-          >
-            انجام شد
-          </button>
-          <button
-            @click="deleteTask('مطالعه Vue.js')"
-            class="bg-primary text-white px-4 py-2 rounded hover:bg-red-700 transition"
-          >
-            حذف
-          </button>
-        </template>
-        <p class="text-sm text-gray-700">
-          یادگیری اسلات‌ها و کامپوننت‌ها در Vue.js
-        </p>
-      </TaskCard>
-
-      <TaskCard>
-        <template #title>
-          <h3 class="text-lg font-semibold">وظیفه ۲: تمرین برنامه‌نویسی</h3>
-        </template>
-        <template #actions>
-          <button
-            @click="markAsDone('تمرین برنامه‌نویسی')"
-            class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 transition"
-          >
-            انجام شد
-          </button>
-          <button
-            @click="deleteTask('تمرین برنامه‌نویسی')"
-            class="bg-primary text-white px-4 py-2 rounded hover:bg-red-700 transition"
-          >
-            حذف
-          </button>
-        </template>
-        <p class="text-sm text-gray-700">
-          حل چند سوال الگوریتمی از سایت LeetCode
-        </p>
-      </TaskCard>
+  <div class="font-sans bg-[#F4F4F4]   w-5/6">
+    <Header />
+    <div class="rounded-br-lg p-5">
+      <h1 class="text-2xl  text-center font-bold mb-4">Task maneger</h1>
+      <div class="flex flex-col gap-6">
+        <TaskCard>
+          <template #title>
+            <h3 class="text-lg font-semibold">وظیفه ۱: مطالعه Vue.js</h3>
+          </template>
+          <template #actions>
+            <button
+              @click="markAsDone('مطالعه Vue.js')"
+              class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 transition"
+            >
+              انجام شد
+            </button>
+            <button
+              @click="deleteTask('مطالعه Vue.js')"
+              class="bg-primary text-white px-4 py-2 rounded hover:bg-red-700 transition"
+            >
+              حذف
+            </button>
+          </template>
+          <p class="text-sm text-gray-700">
+            یادگیری اسلات‌ها و کامپوننت‌ها در Vue.js
+          </p>
+        </TaskCard>
+  
+        <TaskCard>
+          <template #title>
+            <h3 class="text-lg font-semibold">وظیفه ۲: تمرین برنامه‌نویسی</h3>
+          </template>
+          <template #actions>
+            <button
+              @click="markAsDone('تمرین برنامه‌نویسی')"
+              class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 transition"
+            >
+              انجام شد
+            </button>
+            <button
+              @click="deleteTask('تمرین برنامه‌نویسی')"
+              class="bg-primary text-white px-4 py-2 rounded hover:bg-red-700 transition"
+            >
+              حذف
+            </button>
+          </template>
+          <p class="text-sm text-gray-700">
+            حل چند سوال الگوریتمی از سایت LeetCode
+          </p>
+        </TaskCard>
+      </div>
     </div>
   </div>
 </template>
 <script setup>
-import TaskCard from './TaskCard.vue';
+import TaskCard from "./TaskCard.vue";
+import Header from "./header.vue";
 </script>
