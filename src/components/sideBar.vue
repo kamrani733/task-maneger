@@ -9,14 +9,10 @@
       </div>
       <div class="text-Gray font-bold text-xs">
         Menu
-        <icon-loader
-          name="dashboard"
-        />
       </div>
       <div></div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import IconLoader  from "../assets/icons/IconLoader.vue";
 </script>

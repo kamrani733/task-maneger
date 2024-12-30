@@ -1,11 +1,11 @@
 <template>
-  <div class="flex flex-col items-start space-y-2">
-    <div class="relative">
+  <div class="flex">
+    <div class="relative w-auto">
       <button
         @click="toggleDropdown"
-        class="px-4 py-2 border border-gray-300 bg-white text-gray-700 rounded shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center space-x-2"
+        class="px-4 py-2 border w-full max-w-xs border-gray-300 bg-white text-gray-700 rounded-l-2xl shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center space-x-2"
       >
-        <IconLoader :name="selectedCountry.icon" :width="24" :height="24" />
+        <img width="20" :src="selectedCountry.icon" />
         <span>{{ selectedCountry.name }} ({{ selectedCountry.code }})</span>
       </button>
       <ul
@@ -16,55 +16,53 @@
           v-for="country in countries"
           :key="country.code"
           @click="selectCountry(country)"
-          class="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center space-x-2"
+          class="px-4 py-2 hover:bg-gray-100 cursor-pointer w-full flex items-center space-x-2"
         >
-          <IconLoader :name="country.icon" :width="24" :height="24" />
-          <span>{{ country.name }} ({{ country.code }})</span>
+          <img width="20" :src="country.icon" />
+          <span class="text-xs">{{ country.name }} ({{ country.code }})</span>
         </li>
       </ul>
     </div>
     <input
       type="text"
       v-model="phoneNumber"
-      placeholder="Enter phone number"
-      class="w-full px-4 py-2 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+      placeholder="123 456 789"
+      class="w-1/5 px-4 py-2 border border-gray-300 rounded-r-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
     />
   </div>
 </template>
 
 <script>
 import { ref } from "vue";
-import IconLoader from "../assets/icons/IconLoader.vue";
 
 export default {
   name: "PhoneInput",
-  components: { IconLoader },
   setup() {
     const countries = ref([
       {
         name: "United States",
         code: "+1",
-        icon: "dashboard",  
+        icon: "/icon/us.png",
       },
       {
         name: "United Kingdom",
         code: "+44",
-        icon: "dashboard",  
+        icon: "/icon/uk.png",
       },
       {
         name: "Australia",
         code: "+61",
-        icon: "dashboard", 
+        icon: "/icon/ar.png",
       },
       {
         name: "Germany",
         code: "+49",
-        icon: "dashboard", 
+        icon: "/icon/gr.png",
       },
       {
         name: "France",
         code: "+33",
-        icon: "dashboard", 
+        icon: "/icon/fr.png",
       },
     ]);
 
@@ -92,4 +90,3 @@ export default {
   },
 };
 </script>
-
