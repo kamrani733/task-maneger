@@ -6,11 +6,11 @@
         class="px-4 py-2 border w-full max-w-xs border-gray-300 bg-white text-gray-700 rounded-l-2xl shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center space-x-2"
       >
         <img width="20" :src="selectedCountry.icon" />
-        <span>{{ selectedCountry.name }} ({{ selectedCountry.code }})</span>
+        <span>{{ selectedCountry.code }}</span>
       </button>
       <ul
         v-if="isDropdownOpen"
-        class="absolute top-full left-0 mt-1 w-full bg-white border border-gray-300 rounded shadow-lg z-10"
+        class="absolute top-full left-0 mt-1 w-64 bg-white border border-gray-300 rounded shadow-lg z-10"
       >
         <li
           v-for="country in countries"
@@ -19,7 +19,7 @@
           class="px-4 py-2 hover:bg-gray-100 cursor-pointer w-full flex items-center space-x-2"
         >
           <img width="20" :src="country.icon" />
-          <span class="text-xs">{{ country.name }} ({{ country.code }})</span>
+          <span class="text-sm">{{ country.name }} ({{ country.code }})</span>
         </li>
       </ul>
     </div>
@@ -27,7 +27,7 @@
       type="text"
       v-model="phoneNumber"
       placeholder="123 456 789"
-      class="w-1/5 px-4 py-2 border border-gray-300 rounded-r-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+      class="w-1/5 px-4 py-2 border border-gray-300 rounded-r-2xl shadow-sm focus:outline-none"
     />
   </div>
 </template>
