@@ -32,12 +32,8 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
-
-export default {
-  name: "PhoneInput",
-  setup() {
     const countries = ref([
       {
         name: "United States",
@@ -79,14 +75,4 @@ export default {
       isDropdownOpen.value = false;
     };
 
-    return {
-      countries,
-      selectedCountry,
-      isDropdownOpen,
-      phoneNumber,
-      toggleDropdown,
-      selectCountry,
-    };
-  },
-};
 </script>
