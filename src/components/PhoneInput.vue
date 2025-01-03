@@ -7,11 +7,26 @@ import countries from "./country.json";
 const selectedCountry = ref(countries[0]);
 const isDropdownOpen = ref(false);
 
-const props = defineProps<PhoneInputProps>();
+const props = defineProps({
+  modelValue: String,
+  label: {
+    type: String,
+    default: "",
+  },
+  errorMessage: {
+    type: String,
+    default: "",
+  },
+  placeholder: {
+    type: String,
+    default: "Enter phone number",
+  },
+});
+
 const emit = defineEmits(["update:modelValue"]);
 const attrs = useAttrs();
 
-const phoneNumber = ref(props.modelValue || "");
+const phoneNumber = ref(props.modelValue);
 
 const toggleDropdown = () => {
   isDropdownOpen.value = !isDropdownOpen.value;
@@ -20,31 +35,43 @@ const toggleDropdown = () => {
 const labelFor = computed(() => {
   return (attrs.id as string) || (attrs.name as string) || "default-id";
 });
+
 const searchQuery = ref("");
 const filteredCountries = computed(() => {
-  return countries.filter(country => {
+  return countries.filter((country) => {
     return country.name.toLowerCase().includes(searchQuery.value.toLowerCase());
   });
 });
+
 const selectCountry = (country: (typeof countries)[number]) => {
   selectedCountry.value = country;
   isDropdownOpen.value = false;
 };
+
 const selectedCountryImg = computed(() => {
   return `https://flagcdn.com/${selectedCountry.value.code.toLowerCase()}.svg`;
 });
 </script>
-
 <template>
   <div class="relative">
-    <div class="flex items-center">
+    <label
+      v-if="props.label"
+      :for="labelFor"
+      class="block mb-1 text-sm font-medium text-gray-700"
+    >
+      {{ props.label }}
+    </label>
+    <div class="flex items-center   " :class="props.errorMessage ? 'border-2 border-red-500 rounded' : ''" >
       <div class="relative">
         <button
           @click="toggleDropdown"
-          class="h-12 p-4 bg-[#272e3c] text-white rounded-l-2xl hover:bg-[#434e62] flex items-center space-x-2"
+          class="h-12 p-4 bg-[#272e3c] text-white rounded-l hover:bg-[#434e62] flex items-center space-x-2"
         >
           <img width="20" :src="selectedCountryImg" alt="Country flag" />
-          <span>{{ selectedCountry.code }}<span class="pl-2">{{ selectedCountry.dialling_code }}</span></span>
+          <span class="flex ml-2 pl-2">
+            <div>{{ selectedCountry.code }}</div>
+            <span class="pl-1">{{ selectedCountry.dialling_code }}</span>
+          </span>
         </button>
 
         <ul
@@ -69,7 +96,12 @@ const selectedCountryImg = computed(() => {
               alt="Country flag"
               loading="lazy"
             />
-            <span class="text-sm">{{ country.name }} ({{ country.dialling_code }})</span>
+            <div class="text-sm flex">
+              <div>
+                {{ country.name }}
+              </div>
+              <div class="mr-2">({{ country.dialling_code }})</div>
+            </div>
           </li>
         </ul>
       </div>
@@ -77,33 +109,26 @@ const selectedCountryImg = computed(() => {
         :id="(attrs.id as string) || (attrs.name as string)"
         v-bind="attrs"
         :value="phoneNumber"
-        :placeholder="(attrs.placeholder as string) || ''"
-        class="block w-full h-12 p-4 rounded-r-lg bg-[#272e3c] text-white text-base focus:outline-none caret-primary"
+        :placeholder="props.placeholder" 
+        class="block w-full h-12 p-4 rounded-r bg-[#272e3c] text-white text-base focus:outline-none caret-primary"
         :class="{
           'border-2 border-negative focus:ring-negative focus:border-negative':
             attrs.errorMessage,
-          '   focus:ring-primary focus:border-primary': !attrs.errorMessage,
+          'focus:ring-primary focus:border-primary': !attrs.errorMessage,
         }"
       />
     </div>
-
-    <label
-      v-if="attrs.label"
-      :for="labelFor"
-      class="block mb-1 text-sm font-medium text-gray-700"
-    >
-      {{ attrs.label }}
-    </label>
-
+  
     <p
-      v-if="attrs.errorMessage"
-      class="text-negative mt-2 text-sm"
+      v-if="props.errorMessage"
+      class="text-negative font-semibold text-sm text-red-500"
       data-test="errorMessage"
     >
-      {{ attrs.errorMessage }}
+      {{ props.errorMessage }}
     </p>
   </div>
 </template>
+
 <style scoped>
 ::-webkit-scrollbar {
   width: 4px;

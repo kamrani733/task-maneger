@@ -1,4 +1,9 @@
 module.exports = {
+  content: [
+    './src/**/*.{js,jsx,ts,tsx,vue}',
+    './public/index.html',
+    './.storybook/**/*.{js,jsx,ts,tsx}',
+  ],
   purge: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   darkMode: "class", // or 'media' or
   theme: {

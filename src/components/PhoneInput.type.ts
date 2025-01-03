@@ -1,7 +1,6 @@
-export interface PhoneInputProps {
-    label?: string;
-    errorMessage?: string;
-    modelValue?: string | unknown;
-    placeholder?: string;
-  }
-  
+ export type PhoneInputProps = {
+  modelValue: string;
+  label: string;
+  errorMessage: string;
+  placeholder: string;
+};
